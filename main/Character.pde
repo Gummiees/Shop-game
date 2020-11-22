@@ -1,17 +1,18 @@
 class Character {
   private int x;
   private int y;
-  private double money;
-  private double experience;
+  private float experience;
   private color mainColor;
   private String name;
-  Inventory inventory;
+  
+  private Inventory inventory;
+  private ArrayList<RPGClass> unlockedClasses = new ArrayList<RPGClass>();
   
   public Character() {
-    money = 1000;
     experience = 0;
     x  = 16;
     y = 16;
+    // TODO: Setup an initial random inventory
   }
   
   void draw() {
@@ -26,15 +27,7 @@ class Character {
     this.name = name;
   }
   
-  void setMoney(double money) {
-    this.money = money;
-  }
-  
-  double getMoney() {
-    return this.money;
-  }
-  
-  void setExperience(double experience) {
+  void setExperience(float experience) {
     this.experience = experience;
   }
   

@@ -6,9 +6,10 @@ class Setup {
   private int inputHeight = 32;
   private int inputTextSize = 20;
   private int headerTextSize = 24;
+  private int headerY = (int)(Constants.HEIGHT / 2);
 
   private int marginColorBox = 8;  
-  private int colorBoxY = marginColorBox + headerTextSize;
+  private int colorBoxY = marginColorBox + headerTextSize + headerY;
   private int colorBoxW = 48;
   private int colorBoxH = 48;
   private ArrayList<Integer> positionsX = new ArrayList<Integer>();
@@ -26,9 +27,11 @@ class Setup {
     colors.add( blue );
     colors.add( pink );
     colors.add( red );
+    colors.add( new int[] {255, 255, 255} );
+    colors.add( new int[] {0, 0, 0});
   }
 
-  void draw() {
+  public void draw() {
     background(51);
 
     switch (currentScreen) {
@@ -48,50 +51,18 @@ class Setup {
     return this.username;
   }
 
-  void drawInputName() {
-    fill(255);
-    textSize(headerTextSize);
-    text(nameHeader, 0, 0, Constants.WIDTH, inputHeight);
-    textSize(inputTextSize);
-    text(username, 0, headerTextSize + inputHeight, Constants.WIDTH, inputHeight);
-  }
-
-  void drawInputColor() {
-    fill(255);
-    noStroke();
-    textSize(headerTextSize);
-    text(colorHeader, 0, 0, Constants.WIDTH, inputHeight);
-    
-    for (int i = 0; i < colors.size(); i++) {
-      int[] colorNumbers = colors.get(i);
-      color colorRgb = color(colorNumbers[0], colorNumbers[1], colorNumbers[2]);
-      drawRectangleColor(colorRgb, i);
-    } 
-  }
-  
-  void drawRectangleColor(color colorRgb, int number) {
-    fill(colorRgb);
-    int x = marginColorBox + ((marginColorBox + colorBoxW) * number);
-    this.positionsX.add(x);
-    rect(x, colorBoxY, colorBoxW, colorBoxH);
-  }
-
-  void setupFinished() {
-    Constants.setupDone = true;
-    currentScreen = 0;
-  }
-
-  String processInput(String text, int keyCode, char key) {
-    if (keyCode == ENTER) {
+  public String processInput(String text, int keyCode, char key) {
+    if (keyCode == ENTER && !Constants.isNullOrBlankSpace(text)) {
       currentScreen++;
-      this.username = text;
+      this.username = text.trim();
       return text;
-    } else {
+    } else if (keyCode != ENTER) {
       return this.username = Constants.processInput(text, keyCode, key);
     }
+    return this.username;
   }
   
-  boolean clickInColor(int mouseX, int mouseY) {
+  public boolean clickInColor(int mouseX, int mouseY) {
     if (mouseY <= colorBoxY || mouseY >= colorBoxY + colorBoxH) {
       return false;
     }
@@ -107,7 +78,7 @@ class Setup {
     return found;
   }
 
-  color getColorClick(int mouseX, int mouseY) {
+  public color getColorClick(int mouseX, int mouseY) {
     color blockColor = color(0);
     boolean found = false;
     for(int i = 0; i < this.positionsX.size() && !found; i++) {
@@ -132,5 +103,56 @@ class Setup {
     }
     currentScreen++;
     return blockColor;
+  }
+  
+  /** PRIVATE METHODS **/
+
+  private void drawInputName() {
+    fill(255);
+    textSize(headerTextSize);
+    textAlign(CENTER);
+    text(nameHeader, 0, headerY, Constants.WIDTH, inputHeight);
+    textSize(inputTextSize);
+    text(username, 0,  headerY + headerTextSize , Constants.WIDTH, inputHeight);
+  }
+
+  private void drawInputColor() {
+    fill(255);
+    textSize(headerTextSize);
+    textAlign(CENTER);
+    text(colorHeader, 0, headerY, Constants.WIDTH, inputHeight);
+    noStroke();
+    for (int i = 0; i < colors.size(); i++) {
+      int[] colorNumbers = colors.get(i);
+      color colorRgb = color(colorNumbers[0], colorNumbers[1], colorNumbers[2]);
+      drawRectangleColor(colorRgb, i);
+      
+    } 
+  }
+  
+  private void drawRectangleColor(color colorRgb, int number) {
+    fill(colorRgb);
+    
+    int symbol = 1;
+    int mult = number;
+    int w = colorBoxW;
+    if (number % 2 == 0) {
+      symbol = -1;
+      w /= 2;
+    } else {
+      mult++;
+      if (number > 0) {
+        mult = ((mult - 1) / 2) + 1;
+      }
+    }
+    
+    int x = (int)(( Constants.WIDTH / 2 ) - ( symbol * w * mult ));
+    this.positionsX.add(x);
+    rect(x, colorBoxY, colorBoxW, colorBoxH);
+  }
+
+  private void setupFinished() {
+    Constants.setupDone = true;
+    currentScreen = 0;
   }
 }
