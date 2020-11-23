@@ -129,8 +129,8 @@ class Table {
     pushMatrix();
     fill(255);
     textSize(Constants.TABLE_TEXT_SIZE);
-    textAlign(CENTER);
-    text(str(this.getSizeLeft()), this.x, this.y + 4, this.boxWidth, this.boxHeight);
+    textAlign(CENTER, CENTER);
+    text(str(this.getSizeLeft()), this.x, this.y, this.boxWidth, this.boxHeight);
     popMatrix();
   }
 }

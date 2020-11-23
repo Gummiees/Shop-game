@@ -23,9 +23,10 @@ static class Constants {
   static final int TABLE_STARTING_SIZE = 3;
   static final int TABLE_MAX_LEVEL = 7;
   static int TABLE_ID = 1;
-  static final int TABLE_SIZE_W = 64;
-  static final int TABLE_SIZE_H = 24;
+  static final int TABLE_SIZE_W = 128;
+  static final int TABLE_SIZE_H = 48;
   static final int TABLE_TEXT_SIZE = 14;
+  static final int TABLE_MARGIN = 50;
   
   /*
   * Coordinates for the tables depending on the level of the shop.
@@ -37,7 +38,24 @@ static class Constants {
   *   - 3: h
   */
   static final ArrayList<int[]> tablePositions = new ArrayList<int[]>(){{
-    add(new int[] { 508, 621, TABLE_SIZE_W, TABLE_SIZE_H });
+    // The bottom one
+    add(new int[] { (int)((WIDTH / 2) - (TABLE_SIZE_W / 2)), (int)(HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
+    
+    // The two around the center bottom one
+    add(new int[] { (int)((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN), (HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { (int)((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_W), (HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
+    
+    // The two at the top of the shop
+    add(new int[] { (int)((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN), (HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT + TABLE_MARGIN), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { (int)((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_W), (HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT + TABLE_MARGIN), TABLE_SIZE_W, TABLE_SIZE_H });
+    
+    // The two on the middle of the shop
+    add(new int[] { (int)((Constants.WIDTH / 2) - Constants.TABLE_MARGIN - TABLE_SIZE_W), (int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_H / 2)), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { (int)((Constants.WIDTH / 2) + Constants.TABLE_MARGIN), (int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_H / 2)), TABLE_SIZE_W, TABLE_SIZE_H });
+    
+    // These two ones are "flipped", so I use the table h instead of w, and vice-versa.
+    add(new int[] { (int)((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN),(int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_W / 2)), TABLE_SIZE_H, TABLE_SIZE_W });
+    add(new int[] { (int)((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_H), (int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_W / 2)), TABLE_SIZE_H, TABLE_SIZE_W });
   }};
   
   // Item

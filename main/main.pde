@@ -29,6 +29,9 @@ void drawSetup() {
 }
 
 void drawShop() {
+  if (shop.getLevel() < 9) {
+    shop.levelUp(10000000);
+  }
   shop.draw();
 }
 
