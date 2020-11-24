@@ -5,7 +5,8 @@ static class Constants {
   static boolean setupDone = false;
   
   // Person
-  static final float PERSON_PERCENT = 0.2;
+  static float PERSON_PERCENT = 0.01;
+  static float PERSON_IN_SHOP_PERCENT = 0.25;
   static final int PERSON_BOX_SIZE = 24;
   
   // Shop

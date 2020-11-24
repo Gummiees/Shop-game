@@ -1,4 +1,4 @@
-  Character character = new Character();
+Character character = new Character();
 Setup setup = new Setup();
 Shop shop = new Shop(Constants.SHOP_START_EXP_REQUIRED, Constants.SHOP_EXP_REQUIRED_FACTOR);
 
@@ -29,9 +29,6 @@ void drawSetup() {
 }
 
 void drawShop() {
-  if (shop.getLevel() < 9) {
-    shop.levelUp(10000000);
-  }
   shop.draw();
 }
 
@@ -40,9 +37,14 @@ void drawCharacter() {
 }
 
 void personStuff() {
-  if ((millis() >= 5000 + time) && generatePerson()) {
+  /*
+  if ((millis() >= 2500 + time) && generatePerson()) {
     this.persons.add(new Person());
     time = millis();
+  }
+  */
+  if (generatePerson()) {
+    this.persons.add(new Person());
   }
   
   removePersons();

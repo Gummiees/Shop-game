@@ -12,9 +12,10 @@ class Person {
   private int maxX = (int)(( Constants.WIDTH / 2 ) - (this.boxWidth / 2));
   private int maxY = (int)(( Constants.HEIGHT / 2 ) + ( Constants.HEIGHT / 16 ));
   private int minY;
+  private boolean movingY = false;
   
-  private boolean startLtr;
-  private boolean finishLtr;
+  private boolean ltr;
+  private boolean goesToShop;
   private boolean wentInShop = false;
   private boolean thinking = false;
   
@@ -24,8 +25,8 @@ class Person {
   private CommonFunctions common = new CommonFunctions();
   
   public Person() {
-    this.startLtr = this.common.randomBoolean();
-    this.finishLtr = this.common.randomBoolean();
+    this.ltr = this.common.randomBoolean();
+    this.goesToShop =  (random(0, 1) <= Constants.PERSON_IN_SHOP_PERCENT);
     this.speed = random(1, 2);
     this.minY = (int)random(10, 100);
     
@@ -55,7 +56,7 @@ class Person {
   
   private void setInitialPosition() {
     this.y = this.minY;
-    if (this.startLtr) {
+    if (this.ltr) {
       this.x = 0;
     } else {
       this.x = Constants.WIDTH - this.boxWidth;
@@ -80,29 +81,35 @@ class Person {
       // Moving
       
       if (
+        this.goesToShop &&
         (
-          !this.wentInShop && (
-            (this.startLtr && this.x <= this.maxX) ||
-            (!this.startLtr && this.x >= this.maxX)
-          )
-        ) || this.wentInShop && (this.y <= this.minY)
+          (!this.wentInShop && (this.ltr && this.x >= this.maxX) || (!this.ltr && this.x <= this.maxX)) ||
+          (this.wentInShop && this.y > this.minY)
+        )
       ) {
-        // Move X
-        if ((!this.wentInShop && this.startLtr) || (this.wentInShop && this.finishLtr)) {
-            // It's moving LTR on the X towards the shop or the end of the screen
-            this.x += this.speed;
-        } else {
-            // It's moving RTL on the X towards the shop or the end of the screen
-            this.x -= this.speed;
-        }
-      } else {
         // Move Y
+        this.movingY = true;
         if (!this.wentInShop) {
           // It's moving on the Y towards the shop
           this.y += this.speed;
         } else if (this.y > this.minY) {
           // It's moving on the Y away from the shop
           this.y -= this.speed;
+        }
+      }
+      
+      if (this.goesToShop && this.y <= this.minY && this.movingY && this.wentInShop) {
+        this.movingY = false;
+      }
+      
+      if (!this.movingY) {
+        // Move X
+        if (this.ltr) {
+            // It's moving LTR on the X 
+            this.x += this.speed;
+        } else {
+            // It's moving RTL on the X
+            this.x -= this.speed;
         }
       }
     }
