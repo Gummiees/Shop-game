@@ -29,7 +29,7 @@ class Shop {
     if (this.canLevelUp(experience)) {
       this.level++;
       // The nextLevelExp, if it was 100, now it will be 100 + 160 = 260
-      this.nextLevelExp += (int)(this.nextLevelExp * this.expRequiredFactor);
+      this.nextLevelExp += Math.round(this.nextLevelExp * this.expRequiredFactor));
       // Leveling up creates a new table.
       this.addTable();
       return (experience - this.nextLevelExp);
@@ -48,8 +48,8 @@ class Shop {
   
   private void drawWalls() {
     stroke(255);
-    int startX = (int)((Constants.WIDTH / 2)  - (Constants.SHOP_WALL_WIDTH / 2));
-    int endX = (int)((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2));
+    int startX = Math.round((Constants.WIDTH / 2)  - (Constants.SHOP_WALL_WIDTH / 2));
+    int endX = Math.round((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2));
     int endY = Constants.HEIGHT - Constants.SHOP_WALL_MARGIN_BOTTOM;
     int startY = endY - Constants.SHOP_WALL_HEIGHT;
     

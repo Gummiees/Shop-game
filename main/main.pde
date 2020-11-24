@@ -44,7 +44,8 @@ void personStuff() {
   }
   */
   if (generatePerson()) {
-    this.persons.add(new Person());
+    // Generates a new person with a random RPGClass from the ones already unlocked.
+    this.persons.add(new Person(this.character.getRandomUnlockedClass()));
   }
   
   removePersons();

@@ -111,7 +111,7 @@ class Table {
     if (this.canLevelUp(experience)) {
       this.level++;
       // The nextLevelExp, if it was 100, now it will be 100 + 160 = 260
-      this.nextLevelExp += (int)(this.nextLevelExp * this.expRequiredFactor);
+      this.nextLevelExp +=Math.round(this.nextLevelExp * this.expRequiredFactor);
       // Leveling up adds one space to the table.
       this.size++;
       return (experience - this.nextLevelExp);

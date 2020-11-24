@@ -9,8 +9,8 @@ class Person {
   private int y;
   private int boxWidth = Constants.PERSON_BOX_SIZE;
   private int boxHeight = Constants.PERSON_BOX_SIZE;
-  private int maxX = (int)(( Constants.WIDTH / 2 ) - (this.boxWidth / 2));
-  private int maxY = (int)(( Constants.HEIGHT / 2 ) + ( Constants.HEIGHT / 16 ));
+  private int maxX = Math.round(( Constants.WIDTH / 2 ) - (this.boxWidth / 2));
+  private int maxY = Math.round(( Constants.HEIGHT / 2 ) + ( Constants.HEIGHT / 16 ));
   private int minY;
   private boolean movingY = false;
   
@@ -24,17 +24,17 @@ class Person {
   
   private CommonFunctions common = new CommonFunctions();
   
-  public Person() {
+  public Person(RPGClass rpgClass) {
     this.ltr = this.common.randomBoolean();
     this.goesToShop =  (random(0, 1) <= Constants.PERSON_IN_SHOP_PERCENT);
     this.speed = random(1, 2);
-    this.minY = (int)random(10, 100);
+    this.minY = Math.round(random(10, 100));
     
     this.setInitialPosition();
     
-    // TODO: Decide profession based on profession % and if unlocked
-    // this.profession = ?
+    // TODO: Decide rpgClass based on rpgClass %
     // TODO: The color must depend on the profession assigned
+    this.rpgClass = rpgClass;
     this.personColor = color(random(255), random(255), random(255));
     
     // TODO: Setup an initial random inventory

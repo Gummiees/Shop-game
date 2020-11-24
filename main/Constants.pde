@@ -4,6 +4,9 @@ static class Constants {
   
   static boolean setupDone = false;
   
+  // Unlocked stuff
+  ArrayList<RPGClass> rpgClasses = new ArrayList<RPGClass>();
+  
   // Person
   static float PERSON_PERCENT = 0.01;
   static float PERSON_IN_SHOP_PERCENT = 0.25;
@@ -40,23 +43,23 @@ static class Constants {
   */
   static final ArrayList<int[]> tablePositions = new ArrayList<int[]>(){{
     // The bottom one
-    add(new int[] { (int)((WIDTH / 2) - (TABLE_SIZE_W / 2)), (int)(HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { Math.round((WIDTH / 2) - (TABLE_SIZE_W / 2)), Math.round(HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
     
     // The two around the center bottom one
-    add(new int[] { (int)((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN), (HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
-    add(new int[] { (int)((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_W), (HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { Math.round((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN), (HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { Math.round((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_W), (HEIGHT - TABLE_MARGIN  - SHOP_WALL_MARGIN_BOTTOM - TABLE_SIZE_H), TABLE_SIZE_W, TABLE_SIZE_H });
     
     // The two at the top of the shop
-    add(new int[] { (int)((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN), (HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT + TABLE_MARGIN), TABLE_SIZE_W, TABLE_SIZE_H });
-    add(new int[] { (int)((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_W), (HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT + TABLE_MARGIN), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { Math.round((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN), (HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT + TABLE_MARGIN), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { Math.round((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_W), (HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT + TABLE_MARGIN), TABLE_SIZE_W, TABLE_SIZE_H });
     
     // The two on the middle of the shop
-    add(new int[] { (int)((Constants.WIDTH / 2) - Constants.TABLE_MARGIN - TABLE_SIZE_W), (int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_H / 2)), TABLE_SIZE_W, TABLE_SIZE_H });
-    add(new int[] { (int)((Constants.WIDTH / 2) + Constants.TABLE_MARGIN), (int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_H / 2)), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { Math.round((Constants.WIDTH / 2) - Constants.TABLE_MARGIN - TABLE_SIZE_W), Math.round(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_H / 2)), TABLE_SIZE_W, TABLE_SIZE_H });
+    add(new int[] { Math.round((Constants.WIDTH / 2) + Constants.TABLE_MARGIN), Math.round(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_H / 2)), TABLE_SIZE_W, TABLE_SIZE_H });
     
     // These two ones are "flipped", so I use the table h instead of w, and vice-versa.
-    add(new int[] { (int)((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN),(int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_W / 2)), TABLE_SIZE_H, TABLE_SIZE_W });
-    add(new int[] { (int)((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_H), (int)(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_W / 2)), TABLE_SIZE_H, TABLE_SIZE_W });
+    add(new int[] { Math.round((Constants.WIDTH / 2) - (Constants.SHOP_WALL_WIDTH / 2) + TABLE_MARGIN),Math.round(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_W / 2)), TABLE_SIZE_H, TABLE_SIZE_W });
+    add(new int[] { Math.round((Constants.WIDTH / 2) + (Constants.SHOP_WALL_WIDTH / 2) - TABLE_MARGIN - TABLE_SIZE_H), Math.round(((HEIGHT - SHOP_WALL_MARGIN_BOTTOM - SHOP_WALL_HEIGHT) + (SHOP_WALL_HEIGHT / 2)) - (TABLE_SIZE_W / 2)), TABLE_SIZE_H, TABLE_SIZE_W });
   }};
   
   // Item

@@ -6,7 +6,7 @@ class Setup {
   private int inputHeight = 32;
   private int inputTextSize = 20;
   private int headerTextSize = 24;
-  private int headerY = (int)(Constants.HEIGHT / 2);
+  private int headerY = Math.round(Constants.HEIGHT / 2));
 
   private int marginColorBox = 8;  
   private int colorBoxY = marginColorBox + headerTextSize + headerY;
@@ -146,7 +146,7 @@ class Setup {
       }
     }
     
-    int x = (int)(( Constants.WIDTH / 2 ) - ( symbol * w * mult ));
+    int x = Math.round(( Constants.WIDTH / 2 ) - ( symbol * w * mult ));
     this.positionsX.add(x);
     rect(x, colorBoxY, colorBoxW, colorBoxH);
   }
