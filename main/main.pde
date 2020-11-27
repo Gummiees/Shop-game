@@ -183,11 +183,12 @@ public int randomSignum() {
 public boolean randomBoolean() {
   return random(1) >= .5;
 }
-  
+
+// Returns the same list without the initial item.
 public static <T> ArrayList<T> filterList(ArrayList<T> list, T item) {
   for (Iterator<T> it = list.iterator(); it.hasNext();) {
     if (it.next() == item) {
-      it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+      it.remove();
     }
   }
   return list;

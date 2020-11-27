@@ -54,19 +54,19 @@ public class Item {
   private void setProbabilitiesByRarity(int rarity) {
     switch(rarity) {
       case 1:
-        this.probabilities = 1;
+        this.probabilities = Constants.INVENTORY_CHANCES_RARITY_1;
         break;
       case 2:
-        this.probabilities = 0.75;
+        this.probabilities = Constants.INVENTORY_CHANCES_RARITY_2;
         break;
       case 3:
-        this.probabilities = 0.5;
+        this.probabilities = Constants.INVENTORY_CHANCES_RARITY_3;
         break;
       case 4:
-        this.probabilities = 0.25;
+        this.probabilities = Constants.INVENTORY_CHANCES_RARITY_4;
         break;
       case 5:
-        this.probabilities = 0.1;
+        this.probabilities = Constants.INVENTORY_CHANCES_RARITY_5;
         break;
     }
   }

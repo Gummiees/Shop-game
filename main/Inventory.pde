@@ -47,7 +47,7 @@ class Inventory {
   public void setRandomWishlist(RPGClass rpgClass) {
     // TODO: Setup an initial random inventory
     this.items = addRandomItem(rpgClass.getItems(), new ArrayList<Item>(), 1);
-    if (this.items.size() == 0) {
+    if (this.items.size() == 0) { //<>//
       // Add random item
       this.addItem(getRandom(rpgClass.getItems()));
     }
@@ -68,7 +68,7 @@ class Inventory {
       // Remove the one that has been already added, so it cannot be added again.
       originalItems = filterList(originalItems, randomItem);
       // Call it again, dividing the probabilities of adding a new one.
-      addedItems = addRandomItem(originalItems, addedItems, chances / Constants.RANDOM_ITEM_CHANCES_DIVIDER);
+      addedItems = addRandomItem(originalItems, addedItems, chances / Constants.INVENTORY_RANDOM_ITEM_CHANCES_DIVIDER);
     }
     return addedItems;
   }

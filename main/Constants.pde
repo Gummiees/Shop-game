@@ -5,13 +5,18 @@ static class Constants {
   static boolean setupDone = false;
   
   // Inventory
-  static final int MONEY_START = 1000;
-  static final float RANDOM_ITEM_CHANCES_DIVIDER = 2; 
+  static final float INVENTORY_RANDOM_ITEM_CHANCES_DIVIDER = 2;
+  static final float INVENTORY_CHANCES_RARITY_1 = 1;
+  static final float INVENTORY_CHANCES_RARITY_2 = 0.75;
+  static final float INVENTORY_CHANCES_RARITY_3 = 0.5;
+  static final float INVENTORY_CHANCES_RARITY_4 = 0.25;
+  static final float INVENTORY_CHANCES_RARITY_5 = 0.1;
   
   // Person
   static int PERSON_ID = 1;
-  static float PERSON_IN_SHOP_PERCENT = 0.25;
+  static final int PERSON_MONEY_START = 1000;
   static final int PERSON_BOX_SIZE = 24;
+  static float PERSON_IN_SHOP_PERCENT = 0.25;
   
   // Shop
   static final int SHOP_START_EXP_REQUIRED = 1000;

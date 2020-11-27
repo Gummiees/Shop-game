@@ -5,7 +5,7 @@ class Character {
   private color mainColor;
   private String name;
   
-  private Inventory inventory = new Inventory(Constants.MONEY_START);
+  private Inventory inventory = new Inventory(Constants.PERSON_MONEY_START);
   private ArrayList<RPGClass> unlockedClasses = new ArrayList<RPGClass>();
   
   public Character(RPGClass defaultClass) {
