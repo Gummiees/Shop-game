@@ -5,7 +5,7 @@ static class Constants {
   static boolean setupDone = false;
   
   // Inventory
-  static final float INVENTORY_RANDOM_ITEM_CHANCES = 0.5;
+  static final float INVENTORY_RANDOM_ITEM_CHANCES = 0.75;
   static final float INVENTORY_CHANCES_RARITY_1 = 1;
   static final float INVENTORY_CHANCES_RARITY_2 = 0.75;
   static final float INVENTORY_CHANCES_RARITY_3 = 0.5;
