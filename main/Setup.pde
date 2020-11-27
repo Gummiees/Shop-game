@@ -6,7 +6,7 @@ class Setup {
   private int inputHeight = 32;
   private int inputTextSize = 20;
   private int headerTextSize = 24;
-  private int headerY = Math.round(Constants.HEIGHT / 2));
+  private int headerY = Math.round(Constants.HEIGHT / 2);
 
   private int marginColorBox = 8;  
   private int colorBoxY = marginColorBox + headerTextSize + headerY;

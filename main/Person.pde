@@ -1,5 +1,6 @@
 class Person {
-  private Inventory inventory;
+  // TODO: Should money be something to have on NPCs?
+  private Inventory wishlist = new Inventory(0);
   
   private RPGClass rpgClass;
   private color personColor;
@@ -13,32 +14,32 @@ class Person {
   private int maxY = Math.round(( Constants.HEIGHT / 2 ) + ( Constants.HEIGHT / 16 ));
   private int minY;
   private boolean movingY = false;
+  private int id;
   
   private boolean ltr;
   private boolean goesToShop;
   private boolean wentInShop = false;
   private boolean thinking = false;
+  private boolean canBuy;
   
   private int time;
   private int timeThinking = 5000;
   
-  private CommonFunctions common = new CommonFunctions();
-  
-  public Person(RPGClass rpgClass) {
-    this.ltr = this.common.randomBoolean();
+  public Person(RPGClass rpgClass, boolean isClassUnlocked) {
+    this.ltr = randomBoolean();
     this.goesToShop =  (random(0, 1) <= Constants.PERSON_IN_SHOP_PERCENT);
     this.speed = random(1, 2);
     this.minY = Math.round(random(10, 100));
+    this.canBuy = isClassUnlocked;
+    
+    this.id = Constants.PERSON_ID;
+    Constants.PERSON_ID++;
     
     this.setInitialPosition();
     
-    // TODO: Decide rpgClass based on rpgClass %
-    // TODO: The color must depend on the profession assigned
     this.rpgClass = rpgClass;
-    this.personColor = color(random(255), random(255), random(255));
-    
-    // TODO: Setup an initial random inventory
-    
+    this.personColor = rpgClass.rpgColor;
+    this.wishlist.setRandomWishlist(rpgClass);
   }
   
   void draw() {
@@ -46,12 +47,21 @@ class Person {
     noStroke();
     pushMatrix();
     this.calculatePosition();
+    this.buyingItem();
     rect(this.x, this.y, this.boxWidth, this.boxHeight);
     popMatrix();
   }
   
   public boolean removePerson() {
     return ( ( this.x + this.boxWidth < 0 ) || this.x > Constants.WIDTH);
+  }
+  
+  public int getId() {
+    return this.id;
+  }
+  
+  public RPGClass getRpgClass() {
+    return this.rpgClass;
   }
   
   private void setInitialPosition() {
@@ -116,7 +126,7 @@ class Person {
   }
   
   private void buyingItem() {
-    if (this.thinking) {
+    if (this.thinking && this.canBuy) {
       // TODO
     }
   }

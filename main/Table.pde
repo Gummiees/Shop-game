@@ -37,34 +37,16 @@ class Table {
     return item.getSize() <= this.getSizeLeft();
   }
   
-  public boolean itemExistsOnTable(Item newItem) {
-    for (Item item : items) {
-      if (item.getId() == newItem.getId()) {
-        return true;
-      }
-    }
-    return false;
-  }
-  
-  public Item getItem(int id) {
-    for (Item item : items) {
-      if (item.getId() == id) {
-        return item;
-      }
-    }
-    return null;
-  }
-  
   public void addItem(Item item) {
     // Can only add the item if it is not already on the table and there is enough size left on it.
-    if (!this.itemExistsOnTable(item) && this.canAddItem(item)) {
+    if (!Constants.itemExists(this.items, item) && this.canAddItem(item)) {
       this.items.add(item);
     }
   }
   
   public void removeItem(Item item) {
-    if (this.itemExistsOnTable(item)) {
-      Item existentItem = this.getItem(item.getId());
+    if (Constants.itemExists(this.items, item)) {
+      Item existentItem = Constants.getItem(this.items, item);
       this.items.remove(existentItem);
     }
   }

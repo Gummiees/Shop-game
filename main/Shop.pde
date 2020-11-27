@@ -29,7 +29,7 @@ class Shop {
     if (this.canLevelUp(experience)) {
       this.level++;
       // The nextLevelExp, if it was 100, now it will be 100 + 160 = 260
-      this.nextLevelExp += Math.round(this.nextLevelExp * this.expRequiredFactor));
+      this.nextLevelExp += Math.round(this.nextLevelExp * this.expRequiredFactor);
       // Leveling up creates a new table.
       this.addTable();
       return (experience - this.nextLevelExp);

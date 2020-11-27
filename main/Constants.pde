@@ -4,11 +4,12 @@ static class Constants {
   
   static boolean setupDone = false;
   
-  // Unlocked stuff
-  ArrayList<RPGClass> rpgClasses = new ArrayList<RPGClass>();
+  // Inventory
+  static final int MONEY_START = 1000;
+  static final float RANDOM_ITEM_CHANCES_DIVIDER = 2; 
   
   // Person
-  static float PERSON_PERCENT = 0.01;
+  static int PERSON_ID = 1;
   static float PERSON_IN_SHOP_PERCENT = 0.25;
   static final int PERSON_BOX_SIZE = 24;
   
@@ -22,11 +23,11 @@ static class Constants {
   static final int SHOP_WALL_MARGIN_BOTTOM = 50;
   
   // Table
+  static int TABLE_ID = 1;
   static final int TABLE_START_EXP_REQUIRED = 250;
   static final float TABLE_EXP_REQUIRED_FACTOR = 1.4;
   static final int TABLE_STARTING_SIZE = 3;
   static final int TABLE_MAX_LEVEL = 7;
-  static int TABLE_ID = 1;
   static final int TABLE_SIZE_W = 128;
   static final int TABLE_SIZE_H = 48;
   static final int TABLE_TEXT_SIZE = 14;
@@ -64,6 +65,48 @@ static class Constants {
   
   // Item
   static int ITEM_ID = 1;
+  
+  
+  static boolean itemExists(ArrayList<Item> items, Item newItem) {
+    for (Item item : items) {
+      if (item.getId() == newItem.getId()) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  static Item getItem(ArrayList<Item> items, Item newItem) {
+    for (Item item : items) {
+      if (item.getId() == newItem.getId()) {
+        return item;
+      }
+    }
+    return null;
+  }
+  
+  static Item getItemByName(ArrayList<Item> items, String itemName) {
+    for (Item item : items) {
+      if (item.getItemName().equals(itemName)) {
+        return item;
+      }
+    }
+    return null;
+  }
+  
+  // RPG Classes
+  static int RPGCLASS_ID = 1;
+  static float ADVENTURER_PERCENT = 0.01;
+  static float WIZARD_PERCENT = 0.005;
+  
+  static RPGClass getClass(ArrayList<RPGClass> rpgClasses, RPGClass newRpgClass) {
+    for (RPGClass rpgClass : rpgClasses) {
+      if (rpgClass == newRpgClass) {
+        return rpgClass;
+      }
+    }
+    return null;
+  }
   
   /** COMMON STATIC FUNCTIONS **/
   

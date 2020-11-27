@@ -5,16 +5,16 @@ class Character {
   private color mainColor;
   private String name;
   
-  private Inventory inventory;
+  private Inventory inventory = new Inventory(Constants.MONEY_START);
   private ArrayList<RPGClass> unlockedClasses = new ArrayList<RPGClass>();
   
-  public Character() {
+  public Character(RPGClass defaultClass) {
     this.experience = 0;
     this.x  = 16;
     this.y = 16;
     
     // By default, the Aventurer is unlocked.
-    this.unlockedClasses.add(RPGClass.Adventurer);
+    this.unlockedClasses.add(defaultClass);
     // TODO: Setup an initial random inventory
   }
   
@@ -50,6 +50,14 @@ class Character {
     return this.mainColor;
   }
   
+  public void setInventory(Inventory inventory) {
+    this.inventory = inventory;
+  }
+  
+  public Inventory getInventory() {
+    return this.inventory;
+  }
+  
   public ArrayList<RPGClass> getUnlockedClasses() {
     return this.unlockedClasses;
   }
@@ -58,14 +66,12 @@ class Character {
     this.unlockedClasses.add(rpgClass);
   }
   
-  public RPGClass getRandomUnlockedClass() {
-    int randomPos = getRandomPosition();
-    return this.unlockedClasses.get(randomPos);
-  }
-  
-  private int getRandomPosition() {
-    // We must do the +1 so they all have the same chance. Otherwise, the last one would have 1/2 chances.
-    // (int)Math.floor(x) will always give the int closest to the lower.
-      return (int)Math.floor(random(0, this.unlockedClasses.size()));
+  public boolean isClassUnlocked(RPGClass newRpgClass) {
+    for (RPGClass rpgClass : this.unlockedClasses) {
+      if (rpgClass.getId() == newRpgClass.getId()) {
+        return true;
+      }
+    }
+    return false;
   }
 }
